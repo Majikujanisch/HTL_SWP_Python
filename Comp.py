@@ -1,0 +1,2 @@
+def easy(x):
+    pass
