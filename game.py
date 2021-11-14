@@ -2,6 +2,7 @@
 import random
 import Comp
 import UserInterface
+import files
 
 
 def inttoSignTranslator (x):
@@ -34,6 +35,13 @@ def decidelogic (x,y):
 def playmulti():
     pass
 
+def winlosetranslator(Spielausgang):
+    if(Spielausgang == "win"):
+        return 0
+    if (Spielausgang == "lose"):
+        return 1
+    if (Spielausgang == "draw"):
+        return 2
 
 def game(botlevel):
     gameover = False
@@ -60,8 +68,9 @@ def game(botlevel):
             print("Spieler: " + inttoSignTranslator(int(userinput)))
             print("Computer: " + inttoSignTranslator(compinput))
             print(decidelogic(int(userinput),compinput))
+            files.filewriter(userinput, winlosetranslator(decidelogic(int(userinput),compinput)))
             userinput = input("Weiterspielen[w] oder ins Main-Menu zurück[b]")
-            replit.clear()
+
             if userinput.lower() == "b":
                 gameover = True;
 

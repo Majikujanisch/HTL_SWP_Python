@@ -1,27 +1,26 @@
 from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.label import Label
-from kivy.uix.textinput import TextInput
+from kivy.uix.widget import Widget
+from kivy.properties import NumericProperty, ReferenceListProperty
+from kivy.vector import Vector
 
 
-class LoginScreen(GridLayout):
+class PongBall(Widget):
+    velocity_x = NumericProperty(0)
+    velocity_y = NumericProperty(0)
+    velocity = ReferenceListProperty(velocity_x, velocity_y)
 
-    def __init__(self, **kwargs):
-        super(LoginScreen, self).__init__(**kwargs)
-        self.cols = 2
-        self.add_widget(Label(text='User Name'))
-        self.username = TextInput(multiline=False)
-        self.add_widget(self.username)
-        self.add_widget(Label(text='password'))
-        self.password = TextInput(password=True, multiline=False)
-        self.add_widget(self.password)
+    def move(self):
+        self.pos = Vector(*self.velocity) + self.pos
 
 
-class MyApp(App):
+class PongGame(Widget):
+    pass
 
+
+class PongApp(App):
     def build(self):
-        return LoginScreen()
+        return PongGame()
 
 
 if __name__ == '__main__':
-    MyApp().run()
+    PongApp().run()
