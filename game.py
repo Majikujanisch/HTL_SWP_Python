@@ -68,7 +68,7 @@ def game(botlevel):
             print("Spieler: " + inttoSignTranslator(int(userinput)))
             print("Computer: " + inttoSignTranslator(compinput))
             print(decidelogic(int(userinput),compinput))
-            files.filewriter(userinput, winlosetranslator(decidelogic(int(userinput),compinput)))
+            files.filewrite(userinput, winlosetranslator(decidelogic(int(userinput),compinput)))
             userinput = input("Weiterspielen[w] oder ins Main-Menu zurück[b]")
 
             if userinput.lower() == "b":
