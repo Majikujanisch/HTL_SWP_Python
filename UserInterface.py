@@ -1,4 +1,5 @@
 import game
+import files
 def playAlonemenu():
     print("Welche Schwierigkeit möchtest du?")
     print("l...leicht[ab flask server]")
@@ -35,12 +36,22 @@ def playmenu():
         print("FALSCHE EINGABE!")
         playmenu()
 def optionmenu():
-    pass
-    mainmenu()
+    print("w...Ausgabe der gesammelten Daten")
+    print("e...mainmenu")
+    uinput = input("Wähle eine Möglichkeit")
+    uinput = uinput.lower()
+    if uinput == "e":
+        mainmenu()
+    elif uinput == "w":
+        files.dataAuswertung()
+        optionmenu()
+    else:
+        print("FALSCHE EINGABE!")
+        optionmenu()
 def mainmenu():
     print("Willkommen bei Schere-Stein-Papier-Echse-Spock")
     print("p...play")
-    print("o...options[not in the game yet]")
+    print("o...options")
     print("e...exit")
     uinput = input("Wähle eine Möglichkeit: ")
     uinput = uinput.lower()
