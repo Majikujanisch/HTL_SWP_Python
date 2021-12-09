@@ -32,7 +32,7 @@ def dataAuswertung():
     print("wins: " + str(wins) + " loses: " + str(loses) + " draws: " + str(draw))
     print("Schere: " + str(schere) + " Stein: " + str(stein) + " Papier: " + str(papier) +
            " Echse: " + str(echse) + " Spock: " + str(spock))
-
+    return gameoutgocounter(data), signcounter(data)
 
 def gameoutgocounter(datalist):
     wins = 0

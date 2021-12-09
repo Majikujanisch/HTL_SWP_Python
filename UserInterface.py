@@ -7,7 +7,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.relativelayout import RelativeLayout
-
+import kivyCode
 import game
 import files
 import kivy
@@ -67,6 +67,7 @@ def optionmenu():
         print("FALSCHE EINGABE!")
         optionmenu()
 def mainmenu():
+
     print("Willkommen bei Schere-Stein-Papier-Echse-Spock")
     print("p...play")
     print("o...options")
@@ -74,8 +75,8 @@ def mainmenu():
     uinput = input("Wähle eine Möglichkeit: ")
     uinput = uinput.lower()
     if uinput == "e":
+        kivyCode.SSP().run()
         print("Aufwiedersehen")
-        Test().run()
     elif uinput == "p":
         playmenu()
     elif uinput == "o":
@@ -155,11 +156,11 @@ class MenuButton(ButtonBehavior, BoxLayout):
         eval(widget.id)
 
 
-class Test(App):
+class SSP1(App):
 
     def build(self):
         f = FloatLayout()
-        self.mb1 = MenuButton(text='Testing1', action='App.get_running_app().pp("1")', options={ '1': 'App.get_running_app().pp("a")', '2': 'App.get_running_app().pp("b")' } )
+        self.mb1 = MenuButton(text='play', action='App.get_running_app().buildGameMenu()', options={ '1': 'App.get_running_app().pp("a")', '2': 'App.get_running_app().pp("b")' } )
         self.mb1.orig_y = f.height - self.mb1.button.height    # save the original y position, so it can be restored later
         self.mb1.pos = (0, self.mb1.orig_y)
         f.add_widget(self.mb1)
@@ -183,25 +184,37 @@ class Test(App):
         # make sure the MenuButtons are always at the top
         self.mb1.orig_y = self.root.height - self.mb1.button.height
         self.mb2.orig_y = self.root.height - self.mb1.button.height - self.mb2.button.height
+        self.mb3.orig_y = self.root.height - self.mb2.button.height - self.mb3.button.height - self.mb1.button.height  # save the original y position, so it can be restored later
+
         self.mb1.pos = (0, self.mb1.orig_y)
         self.mb2.pos = (0, self.mb2.orig_y)
+        self.mb3.pos = (0, self.mb3.orig_y)
 
     def pp(self,text):
         print(text)
 
-class SSP(MDApp):
-    def build(self):
-        leinwand = Screen()
-        btn1 = MDRectangleFlatButton(text="Play", pos_hint={'x': 0.1, 'y': 0.8}, on_release=self.xx)
-        btn2 = MDRectangleFlatButton(text="Optionen", pos_hint={'x': 0.1, 'y': 0.70}, on_release=self.xx)
-        btn3 = MDRectangleFlatButton(text="Beenden", pos_hint={'x': 0.1, 'y': 0.6}, on_release=self.stop(SSP))
-        leinwand.add_widget(btn1)
-        leinwand.add_widget(btn2)
-        leinwand.add_widget(btn3)
-        return leinwand
-    def xx(self, obj):
-        lein = Screen()
-        l = Label()
-        lein.add_widget(l)
-        return lein
+    def buildGameMenu(self):
+        f = FloatLayout()
+        self.mb1 = MenuButton(text='Testing1', action='App.get_running_app().buildGameMenu()',
+                              options={'1': 'App.get_running_app().pp("a")', '2': 'App.get_running_app().pp("b")'})
+        self.mb1.orig_y = f.height - self.mb1.button.height  # save the original y position, so it can be restored later
+        self.mb1.pos = (0, self.mb1.orig_y)
+        f.add_widget(self.mb1)
+
+        self.mb2 = MenuButton(text='Testing2', action='App.get_running_app().pp("3")',
+                              options={'1': 'App.get_running_app().pp("a")', '2': 'App.get_running_app().pp("b")'})
+        self.mb2.orig_y = f.height - self.mb1.button.height - self.mb2.button.height  # save the original y position, so it can be restored later
+        self.mb2.pos = (0, self.mb2.orig_y)
+        f.add_widget(self.mb2)
+
+        self.mb3 = MenuButton(text='Testing3', action='App.get_running_app().pp("3")',
+                              options={'1': 'App.get_running_app().pp("a")', '2': 'App.get_running_app().pp("b")'})
+        self.mb3.orig_y = f.height - self.mb2.button.height - self.mb3.button.height - self.mb1.button.height  # save the original y position, so it can be restored later
+        self.mb3.pos = (0, self.mb3.orig_y)
+        f.add_widget(self.mb3)
+
+        self.root = f
+
+        f.bind(size=self.sizeChanged)
+
 
