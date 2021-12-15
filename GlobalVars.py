@@ -1,0 +1,2 @@
+winstat = "none"
+leerdone = False

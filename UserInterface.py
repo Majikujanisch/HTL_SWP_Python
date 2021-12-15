@@ -11,13 +11,10 @@ import kivyCode
 import game
 import files
 import kivy
-import kivymd
+
 kivy.require("2.0.0")
-from kivymd.app import MDApp
-from kivymd.uix.button import MDRectangleFlatButton
-from kivymd.uix.label import Label
-from kivymd.uix.screen import Screen
-from kivy.lang import Builder
+
+
 def playAlonemenu():
     print("Welche Schwierigkeit möchtest du?")
     print("l...leicht[ab flask server]")
