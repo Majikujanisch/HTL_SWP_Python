@@ -20,14 +20,18 @@ class Firma:
         index = 0
         for x in self.Person:
             index = index +1
+
         return index
 
     def countGruppenleiter(self):
-        index = 0
-        for x in self.Person:
-            if isinstance(x, Gruppenleiter) :
-                index  = index +1
-        return index
+        #Ohne List Comprehention
+        #index = 0
+        #for x in self.Person:
+        #    if isinstance(x, Gruppenleiter) :
+        #        index  = index +1
+        #Mit List Comprehention
+        newlist = [x for x in self.Person if isinstance(x,Gruppenleiter)]
+        return newlist
 
     def countAbteilungen(self):
         index = 0
@@ -86,9 +90,10 @@ class Gruppenleiter(Mitarbeiter):
 
 class Abteilung:
     def __init__(self, name):
-        self.Personen = ()
+        self.Personen = []
         self.Name = name
     def addPerson(self, person):
-        self.Personen.extend(person)
+        if person != None and isinstance(person, Person):
+            self.Personen.append(person)
     def getName(self):
         return self.Name

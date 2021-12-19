@@ -1,4 +1,8 @@
 import random
+
+from kivy.properties import StringProperty
+from kivy.uix.button import Button
+
 import GlobalVars
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -102,7 +106,7 @@ Builder.load_string("""
     BoxLayout:
         orientation: 'vertical'
         Button:
-            text: str(root.ausgabe)
+            name: "bnt1"
         Button:
             text: "Nochmal"
         Button: 
@@ -112,27 +116,35 @@ Builder.load_string("""
         orientation: 'vertical'
         Button:
             text: "Zum ergebniss:"
-            on_press:root.manager.current="ausgabe"
+            on_press:
+                root.manager.current="ausgabe"
 
-        
+ 
             
 """)
+
 
 class MenuScreen(Screen):
     pass
 
+
 class PlayScreen(Screen):
     pass
 
+
 class OptionsScreen(Screen):
     pass
+
+
 class OptionsDataView(Screen):
     bigdata1, bigdata2 = files.dataAuswertung()
     data1, data2, data3 = bigdata1
     data4, data5, data6, data7, data8 = bigdata2
 
+
 class PlayAloneMenu(Screen):
     pass
+
 
 class SpielMittel(Screen):
     def setIndex(self, value):
@@ -140,21 +152,38 @@ class SpielMittel(Screen):
         compinput = random.randint(0, 4)
         GlobalVars.winstat = game.decidelogic(int(userinput), compinput)
 
+
+class Sm(ScreenManager):
+    def __init__(self):
+        super(Sm, self).__init__()
+
+    def refreshausgabe(self):
+        self.remove_widget(AusgabeScreen(name="ausgabe"))
+        print("update")
+        self.add_widget(AusgabeScreen(name="ausgabe"))
+
+
 class LeerScreen(Screen):
-    def refresh(self):
-        pass
+    def on_enter(self, *args):
+        manager = Sm()
+        manager.refreshausgabe()
+
+
 
 class AusgabeScreen(Screen):
-    ausgabe = GlobalVars.winstat
-    print(ausgabe)
-    def on_enter(self, *args):
+    ausgabe = StringProperty("")
+    def __init__(self, *args, **kw):
+        super().__init__(**kw)
+        self.ausgabe = GlobalVars.winstat
+        print(self.ausgabe)
+
+    def on_pre_enter(self, *args):
         self.ausgabe = GlobalVars.winstat
 
-class Sm (ScreenManager):
-    def __init__(self):
-        pass
+
 class SSP(App):
-    scm = ScreenManager()
+    scm = Sm()
+
     def build(self):
         # Create the screen manager
 
@@ -164,8 +193,9 @@ class SSP(App):
         SSP.scm.add_widget(OptionsDataView(name="data"))
         SSP.scm.add_widget(PlayAloneMenu(name="palone"))
         SSP.scm.add_widget(SpielMittel(name="mGame"))
-        SSP.scm.add_widget(AusgabeScreen(name="ausgabe"))
         SSP.scm.add_widget(LeerScreen(name="leer"))
+        SSP.scm.add_widget(AusgabeScreen(name="ausgabe"))
         return SSP.scm
+
     def refreshh(self):
         pass
