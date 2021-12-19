@@ -10,6 +10,7 @@ from kivy.app import App
 
 import files
 import game
+import APIManager
 
 Builder.load_string("""
 <MenuScreen>:
@@ -39,6 +40,9 @@ Builder.load_string("""
         Button:
             text: 'Ausgabe gesammelter Daten'
             on_press: root.manager.current = "data"
+        Button:
+            text: 'Upload der Daten in die API'
+            on_press: root.upload()
         Button:
             text: 'Zurück zum Hauptmenü'
             on_press: root.manager.current = 'menu'
@@ -90,15 +94,19 @@ Builder.load_string("""
         Button:
             text: "Papier"
             on_press:root.setIndex(1)
+            on_press:root.manager.current="leer"
         Button:
             text: "Schere"
             on_press:root.setIndex(2)
+            on_press:root.manager.current="leer"
         Button:
             text: "Spock"
             on_press:root.setIndex(3)
+            on_press:root.manager.current="leer"
         Button:
             text: "Echse"
             on_press:root.setIndex(4)
+            on_press:root.manager.current="leer"
         Button:
             text: "zurück"
             on_press:root.manager.current="palone"
@@ -106,11 +114,13 @@ Builder.load_string("""
     BoxLayout:
         orientation: 'vertical'
         Button:
-            name: "bnt1"
+            text: "In der Konsole"
         Button:
             text: "Nochmal"
+            on_press:root.manager.current="mGame"
         Button: 
             text: "Zurück zu Schwierigkeitsauswahl"
+            on_press:root.manager.current="palone"
 <LeerScreen>:
     BoxLayout:
         orientation: 'vertical'
@@ -133,7 +143,12 @@ class PlayScreen(Screen):
 
 
 class OptionsScreen(Screen):
-    pass
+    def upload(self):
+        schere, stein, papier, echse, spock = files.signcounter(files.filereader())
+        print("sending request")
+        code = APIManager.sendRequest("Anna", schere, stein, papier, spock, echse)
+        print("Done")
+        print("code=" + str(code))
 
 
 class OptionsDataView(Screen):
@@ -150,7 +165,9 @@ class SpielMittel(Screen):
     def setIndex(self, value):
         userinput = value
         compinput = random.randint(0, 4)
+        print("Comp: "+ game.inttoSignTranslator(compinput))
         GlobalVars.winstat = game.decidelogic(int(userinput), compinput)
+        files.filewrite(userinput, game.winlosetranslator(game.decidelogic(int(userinput), compinput)))
 
 
 class Sm(ScreenManager):
@@ -159,7 +176,6 @@ class Sm(ScreenManager):
 
     def refreshausgabe(self):
         self.remove_widget(AusgabeScreen(name="ausgabe"))
-        print("update")
         self.add_widget(AusgabeScreen(name="ausgabe"))
 
 
