@@ -10,7 +10,7 @@ from kivy.app import App
 import files
 import game
 import APIManager
-
+if __name__ == __main__:
 Builder.load_string("""
 <MenuScreen>:
     BoxLayout:
