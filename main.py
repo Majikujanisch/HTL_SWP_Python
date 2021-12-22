@@ -1,3 +1,3 @@
 import UserInterface
 if __name__ == "__main__":
-    UserInterface.mainmenu()
+    UserInterface.premenu()

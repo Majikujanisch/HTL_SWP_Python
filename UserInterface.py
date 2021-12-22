@@ -69,7 +69,6 @@ def mainmenu():
     uinput = input("Wähle eine Möglichkeit: ")
     uinput = uinput.lower()
     if uinput == "e":
-        kivyCode.SSP().run()
         print("Aufwiedersehen")
     elif uinput == "p":
         playmenu()
@@ -78,6 +77,19 @@ def mainmenu():
     else:
         print("FALSCHE EINGABE!")
         mainmenu()
+def premenu():
 
+    print("Bevor wir spielen Können: Konsole (k) oder Applikation (a)")
+    print("e...exit")
+    uinput = input("Wähle eine Möglichkeit: ")
+    uinput = uinput.lower()
+    if uinput == "k":
+        mainmenu()
+
+    elif uinput == "a":
+        kivyCode.SSP().run()
+    else:
+        print("FALSCHE EINGABE!")
+        mainmenu()
 
 
