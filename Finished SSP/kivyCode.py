@@ -1,7 +1,6 @@
 import random
 
 from kivy.properties import StringProperty
-from kivy.uix.button import Button
 
 import GlobalVars
 from kivy.lang import Builder
@@ -74,12 +73,12 @@ Builder.load_string("""
 <PlayAloneMenu>:
     BoxLayout:
         Button:
-            text:"leicht (mit flask möglich)"
+            text:"leicht (not imp)"
         Button:
             text:"mittel"
             on_press: root.manager.current = "mGame"
         Button:
-            text:"schwer (mit flask möglich)"
+            text:"schwer (not imp)"
         Button: 
             text:"zurück"
             on_press:root.manager.current="play"
@@ -165,7 +164,7 @@ class SpielMittel(Screen):
     def setIndex(self, value):
         userinput = value
         compinput = random.randint(0, 4)
-        print("Comp: "+ game.inttoSignTranslator(compinput))
+        print("Comp: " + game.inttoSignTranslator(compinput))
         GlobalVars.winstat = game.decidelogic(int(userinput), compinput)
         files.filewrite(userinput, game.winlosetranslator(game.decidelogic(int(userinput), compinput)))
 

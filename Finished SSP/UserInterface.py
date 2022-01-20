@@ -5,9 +5,9 @@ import kivyCode
 import APIManager
 def playAlonemenu():
     print("Welche Schwierigkeit möchtest du?")
-    print("l...leicht[ab flask server]")
+    print("l...leicht[not imp]")
     print("m...mittel")
-    print("s...Schwer[ab flask server]")
+    print("s...Schwer[not imp]")
     print("b...Zurück zum Menü")
     uinput = input("Wähle eine Möglichkeit")
     uinput = uinput.lower()

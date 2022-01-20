@@ -1,3 +1,8 @@
-import UserInterface
+import knotandlist
+import random
 if __name__ == "__main__":
-    UserInterface.premenu()
+    list = knotandlist.KnotList()
+    for i in range(1000):
+        list.AddToBack(random.randint(0, 100))
+    list.ShowList()
+    list.CoutnListElements()

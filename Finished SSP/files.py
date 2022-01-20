@@ -5,7 +5,7 @@ import files
 
 def filereader():
     listrows = []
-    with open('names.csv', newline='') as csvfile:
+    with open('../names.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
 
         for row in spamreader:
@@ -15,7 +15,7 @@ def filereader():
 
 def filewrite(Choice, winlose):
     listprevrows = filereader()
-    with open('names.csv', 'w', newline='') as csvfile:
+    with open('../names.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter=' ',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
         spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
