@@ -102,8 +102,18 @@ class KnotList:
         newKnot = Knot(value, beforeinsertknot, afterinsertknot)
         beforeinsertknot.Next = newKnot
         afterinsertknot.Behind = newKnot
-    def DeleteAfter (self, int, value):
-        pass
+    def DeleteBefore (self, int):
+        searchknot = self.Start
+        incrementer = 0
+        while (incrementer < int - 2):
+            searchknot = searchknot.GetNextKnot()
+            incrementer = incrementer + 1
+        beforedeleteknot = searchknot
+        deletionknot = searchknot.GetNextKnot()
+        afterdeleteknot = deletionknot.GetNextKnot()
+        beforedeleteknot.Next = afterdeleteknot
+        afterdeleteknot.Behind = beforedeleteknot
+        deletionknot = None
     def DelByElemInt(self, value):
         pass
 
