@@ -39,9 +39,8 @@ class KnotList:
         return self.Start.Next
     def ShowList(self):
         searchknot = self.Start
-        #print(searchknot)
         while (searchknot.GetNextKnot() != self.End):
-
+            print(searchknot)
             searchknot = searchknot.GetNextKnot()
         print(self.End)
 
@@ -75,6 +74,33 @@ class KnotList:
                 searchknotNext = searchknot.Next
                 searchknotBehind.Next = searchknotNext
                 searchknotNext.Behind = searchknotBehind
+
+    def InsertBefore(self, int, value):
+        searchknot = self.Start
+        incrementer = 0
+        while (incrementer < int-1):
+            searchknot = searchknot.GetNextKnot()
+            incrementer = incrementer + 1
+        print(searchknot)
+        beforeinsertknot = searchknot
+        afterinsertknot = searchknot.GetNextKnot()
+        newKnot = Knot(value, beforeinsertknot, afterinsertknot)
+        beforeinsertknot.Next = newKnot
+        afterinsertknot.Behind = newKnot
+    def InsertAfter(self, int, value):
+        searchknot = self.Start
+        incrementer = 0
+        while (incrementer < int):
+            searchknot = searchknot.GetNextKnot()
+            incrementer = incrementer + 1
+        print(searchknot)
+        beforeinsertknot = searchknot
+        afterinsertknot = searchknot.GetNextKnot()
+        newKnot = Knot(value, beforeinsertknot, afterinsertknot)
+        beforeinsertknot.Next = newKnot
+        afterinsertknot.Behind = newKnot
+    def DeleteAfter (self, int, value):
+
     def DelByElemInt(self, value):
         pass
 
