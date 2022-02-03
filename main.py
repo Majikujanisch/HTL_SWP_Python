@@ -8,5 +8,6 @@ if __name__ == "__main__":
     list.ShowList()
     list.InsertAfter(2, 1001)
     list.ShowListwithStart()
+    print(str(list.Find(100)))
     list.DeleteAfter(2)
     list.ShowListwithStart()

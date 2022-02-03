@@ -124,6 +124,16 @@ class KnotList:
         afterdeleteknot = deletionknot.GetNextKnot()
         beforedeleteknot.Next = afterdeleteknot
         afterdeleteknot.Behind = beforedeleteknot
+    def Find(self, value):
+        searchknot = self.Start
+        incrementer = 0
+        while (searchknot.GetNextKnot() != self.End):
+            searchknot = searchknot.GetNextKnot()
+            if(searchknot.Value == value):
+                incrementer = incrementer +1
+        if(incrementer == 0):
+            return -1
+        return incrementer
     def DelByElemInt(self, value):
         pass
 
