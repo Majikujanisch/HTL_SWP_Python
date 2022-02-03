@@ -6,3 +6,5 @@ if __name__ == "__main__":
         list.AddToBack(random.randint(0, 100))
     list.ShowList()
     list.CoutnListElements()
+    list.DelByValue(20)
+    list.CoutnListElements()
