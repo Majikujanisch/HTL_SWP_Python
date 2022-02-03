@@ -37,13 +37,18 @@ class KnotList:
         return lastknot
     def FinfFirst(self):
         return self.Start.Next
+    def ShowListwithStart(self):
+        searchknot = self.Start
+        print(searchknot)
+        while (searchknot.GetNextKnot() != self.End):
+            searchknot = searchknot.GetNextKnot()
+            print(searchknot)
+        print(self.End)
     def ShowList(self):
         searchknot = self.Start
         while (searchknot.GetNextKnot() != self.End):
-            print(searchknot)
             searchknot = searchknot.GetNextKnot()
-        print(self.End)
-
+            print(searchknot)
     def CoutnListElements(self):
         index = 0
         searchknot = self.Start
@@ -81,7 +86,6 @@ class KnotList:
         while (incrementer < int-1):
             searchknot = searchknot.GetNextKnot()
             incrementer = incrementer + 1
-        print(searchknot)
         beforeinsertknot = searchknot
         afterinsertknot = searchknot.GetNextKnot()
         newKnot = Knot(value, beforeinsertknot, afterinsertknot)
@@ -93,14 +97,13 @@ class KnotList:
         while (incrementer < int):
             searchknot = searchknot.GetNextKnot()
             incrementer = incrementer + 1
-        print(searchknot)
         beforeinsertknot = searchknot
         afterinsertknot = searchknot.GetNextKnot()
         newKnot = Knot(value, beforeinsertknot, afterinsertknot)
         beforeinsertknot.Next = newKnot
         afterinsertknot.Behind = newKnot
     def DeleteAfter (self, int, value):
-
+        pass
     def DelByElemInt(self, value):
         pass
 
