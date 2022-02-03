@@ -113,7 +113,17 @@ class KnotList:
         afterdeleteknot = deletionknot.GetNextKnot()
         beforedeleteknot.Next = afterdeleteknot
         afterdeleteknot.Behind = beforedeleteknot
-        deletionknot = None
+    def DeleteAfter (self, int):
+        searchknot = self.Start
+        incrementer = 0
+        while (incrementer < int):
+            searchknot = searchknot.GetNextKnot()
+            incrementer = incrementer + 1
+        beforedeleteknot = searchknot
+        deletionknot = searchknot.GetNextKnot()
+        afterdeleteknot = deletionknot.GetNextKnot()
+        beforedeleteknot.Next = afterdeleteknot
+        afterdeleteknot.Behind = beforedeleteknot
     def DelByElemInt(self, value):
         pass
 

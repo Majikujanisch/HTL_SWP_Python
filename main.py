@@ -8,5 +8,5 @@ if __name__ == "__main__":
     list.ShowList()
     list.InsertAfter(2, 1001)
     list.ShowListwithStart()
-    list.DeleteBefore(4)
+    list.DeleteAfter(2)
     list.ShowListwithStart()
