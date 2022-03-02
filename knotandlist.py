@@ -13,6 +13,8 @@ class Knot:
 
     def GetNextKnot(self):
         return self.Next
+    def GetValue(self):
+        return self.Value
 
 class KnotList:
     def __init__(self):
@@ -20,6 +22,16 @@ class KnotList:
         self.End = Knot("End", behind = self.Start)
         self.Start.Next = self.End
         self.added = False
+
+    def __len__(self):
+        return self.CoutnListElements()
+
+    def __getitem__(self, index: int):
+        return self.FindIndex(index)
+
+    def __setitem__(self, index: int, knot):
+        self.InsertBefore(index, knot)
+
     def AddToBack(self, value):
         if(self.added == False):
 
@@ -55,7 +67,7 @@ class KnotList:
         while (searchknot.GetNextKnot() != self.End):
             searchknot = searchknot.GetNextKnot()
             index = index+1
-        print("Anzahl: " + str(index))
+        return index
 
     def AddToStart(self, value):
         if (self.added == False):
@@ -134,6 +146,31 @@ class KnotList:
         if(incrementer == 0):
             return -1
         return incrementer
+    def FindIndex(self, index):
+        searchknot = self.Start
+        incrementer = 0
+        while (incrementer == index):
+            searchknot = searchknot.GetNextKnot()
+            incrementer = incrementer + 1
+        return searchknot
+    def SortAsc(self):
+        i = 1
+        j = 1
+        k = self.Start
+        k = k.GetNextKnot()
+        for i in range(len(self)):
+            print(i)
+            key = self[i+1]
+            j = i - 1
+            while j >= 0 and self[j].GetValue() > key.GetValue():
+                self[j+1] = self[j]
+                j -= 1
+            self[j+1] = key
+
+
+
+
+
     def DelByElemInt(self, value):
         pass
 
