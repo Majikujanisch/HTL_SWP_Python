@@ -11,6 +11,6 @@ if __name__ == "__main__":
     print(list.FindIndexKnot(1).Value)
     print('\n\n\n================')
     print("sort")
-    list.SortAsc()
+    list.SortDesc()
     print('\n\n\n================')
     list.ShowList()

@@ -189,5 +189,17 @@ class KnotList:
             knot = self.FindIndexKnot(j + 1)
             knot.Value = key
 
-    def DelByElemInt(self, value):
-        pass
+    def SortDesc(self):
+        for i in range(1,len(self)+1):
+            key = self.FindIndex(i)
+            j = i - 1
+            print(f'i is {self[i]}; j is {self[j]}')
+            print(f'typeof(value1):{type(self[j])};\ntypeof(value2):{type(self[i])}')
+
+            while j >= 1 and key > self.FindIndex(j):
+                knot = self.FindIndexKnot(j+1)
+                knot.Value = self.FindIndex(j)
+                j -= 1
+                print("swap")
+            knot = self.FindIndexKnot(j + 1)
+            knot.Value = key
