@@ -33,7 +33,7 @@ class KnotList:
 
     def __setitem__(self, index: int, value):
         knot = self.FindIndexKnot(index)
-        knot.SetValue(value)
+        knot.Value = value
 
     def AddToBack(self, value):
         if (self.added == False):
@@ -175,17 +175,19 @@ class KnotList:
             incrementer = incrementer + 1
         return searchknot
     def SortAsc(self):
-        for i in range(2, len(self)-1):
-            key = self[i]
+        for i in range(1,len(self)+1):
+            key = self.FindIndex(i)
             j = i - 1
-            value1 = self[j]
             print(f'i is {self[i]}; j is {self[j]}')
             print(f'typeof(value1):{type(self[j])};\ntypeof(value2):{type(self[i])}')
-            if(isinstance(self[j], int) and isinstance(self[i], int)):
-                while j >= 0 and key < value1:
-                    self[j + 1] = self[j]
-                    j = j - 1
-                self[j + 1] = key
+
+            while j >= 1 and key < self.FindIndex(j):
+                knot = self.FindIndexKnot(j+1)
+                knot.Value = self.FindIndex(j)
+                j -= 1
+                print("swap")
+            knot = self.FindIndexKnot(j + 1)
+            knot.Value = key
 
     def DelByElemInt(self, value):
         pass
