@@ -3,18 +3,13 @@ import random
 if __name__ == "__main__":
     list = knotandlist.KnotList()
 
-    for i in range(5):
+    for i in range(10):
         list.AddToBack(random.randint(0, 100))
-    list.ShowList()
-    list.InsertAfter(2, 1001)
-    list.ShowListwithStart()
-    print(str(list.Find(100)))
-    list.DeleteAfter(2)
-    list.ShowListwithStart()
+    print('\n\n\n================')
     print("show")
     list.ShowList()
+    print('\n\n\n================')
     print("sort")
     list.SortAsc()
-    print("show")
+    print('\n\n\n================')
     list.ShowList()
-    print(list.FindIndex(3))
