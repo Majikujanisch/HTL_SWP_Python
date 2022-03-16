@@ -1,3 +1,4 @@
+import time
 class Knot:
     def __init__(self, value=None, behind=None, next=None):
         self.Behind = behind
@@ -174,32 +175,56 @@ class KnotList:
             searchknot = searchknot.GetNextKnot()
             incrementer = incrementer + 1
         return searchknot
+
     def SortAsc(self):
-        for i in range(1,len(self)+1):
+        for i in range(1, len(self) + 1):
             key = self.FindIndex(i)
             j = i - 1
-            print(f'i is {self[i]}; j is {self[j]}')
-            print(f'typeof(value1):{type(self[j])};\ntypeof(value2):{type(self[i])}')
 
             while j >= 1 and key < self.FindIndex(j):
-                knot = self.FindIndexKnot(j+1)
+                knot = self.FindIndexKnot(j + 1)
                 knot.Value = self.FindIndex(j)
                 j -= 1
-                print("swap")
             knot = self.FindIndexKnot(j + 1)
             knot.Value = key
 
     def SortDesc(self):
-        for i in range(1,len(self)+1):
+        for i in range(1, len(self) + 1):
             key = self.FindIndex(i)
             j = i - 1
-            print(f'i is {self[i]}; j is {self[j]}')
-            print(f'typeof(value1):{type(self[j])};\ntypeof(value2):{type(self[i])}')
 
             while j >= 1 and key > self.FindIndex(j):
-                knot = self.FindIndexKnot(j+1)
+                knot = self.FindIndexKnot(j + 1)
                 knot.Value = self.FindIndex(j)
                 j -= 1
-                print("swap")
             knot = self.FindIndexKnot(j + 1)
             knot.Value = key
+
+    def FillTime(self, it):
+        timebefore = time.time()
+        for i in range(len(it)):
+            self.AddToBack(it[i])
+        timeafter = time.time()
+        return timeafter-timebefore
+    def SortAscTest(self):
+        index = 0
+        for i in range(1, len(self) + 1):
+            key = self.FindIndex(i)
+            j = i - 1
+
+            while j >= 1 and key < self.FindIndex(j):
+                knot = self.FindIndexKnot(j + 1)
+                knot.Value = self.FindIndex(j)
+                j -= 1
+                index+=1
+            knot = self.FindIndexKnot(j + 1)
+            knot.Value = key
+        return index
+    def SortTimeAsc(self):
+        before = time.time()
+        index = self.SortAscTest()
+        after = time.time()
+        return index, after-before
+    def DefineO(self, length, index):
+        return index/length
+

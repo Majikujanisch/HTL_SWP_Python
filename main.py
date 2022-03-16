@@ -1,16 +1,29 @@
 import knotandlist
 import random
-if __name__ == "__main__":
-    list = knotandlist.KnotList()
+import Arraylist
 
-    for i in range(10):
-        list.AddToBack(random.randint(0, 100))
-    print('\n\n\n================')
-    print("show")
-    list.ShowListwithStart()
-    print(list.FindIndexKnot(1).Value)
-    print('\n\n\n================')
-    print("sort")
-    list.SortDesc()
-    print('\n\n\n================')
-    list.ShowList()
+if __name__ == "__main__":
+    zahlen = []
+    for i in range(100):
+        zahlen.append(random.randint(0,100))
+    list = knotandlist.KnotList()
+    array = Arraylist.ArrayList(size=1)
+
+    print("Füllzeit Liste")
+    print(list.FillTime(zahlen))
+
+    print("Füllzeit ArrayList")
+    print(array.FillTime(zahlen))
+
+    print("Sortierzeit Liste")
+    OListe, timeListe = list.SortTimeAsc()
+    print(timeListe)
+
+    print("Sortierzeit Array")
+    OArray, timeArray = array.SortTimeAsc()
+    print(timeArray)
+
+    print("Aufwandsklassen")
+    print(str(list.DefineO(100, OListe)) + "n")
+    print(str(OArray/100) + "n")
+
